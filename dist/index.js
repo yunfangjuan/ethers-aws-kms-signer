@@ -72,6 +72,10 @@ class AwsKmsSigner extends _ethers.ethers.Signer {
     var _this4 = this;
 
     return _asyncToGenerator(function* () {
+      if (transaction.from) {
+        delete transaction.from;
+      }
+
       const unsignedTx = yield _ethers.ethers.utils.resolveProperties(transaction);
 
       const serializedTx = _ethers.ethers.utils.serializeTransaction(unsignedTx);
